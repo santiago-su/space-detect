@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build-and-test:
+    docker:
+      - image: circleci/node:12.8.1
+
+    working_directory: ~/workspace
+
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore npm cache
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Build app
+          command: npm build
+
+      - run:
+          name: Run tests
+          command: npm test
+
+      - run:
+          name: Store test coverage
+          command: npm test -- --coverage --watchAll=false && npm run codecov CODECOV_TOKEN=${CODECOV_TOKEN}
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build-and-test
