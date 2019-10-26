@@ -15,6 +15,7 @@
     "start": "node build/index.js",
     "build": "tsc",
     "test": "jest",
+    "watch": "tsc -w",
     "lint": "tslint --project .",
     "codecov": "codecov"
   },
@@ -30,6 +31,7 @@
     "@types/node": "^12.7.2",
     "codecov": "^3.6.1",
     "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",

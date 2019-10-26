@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [{
+    "name": "Jest Tests",
+    "type": "node",
+    "request": "launch",
+    "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
+    "stopOnEntry": false,
+    "cwd": "${workspaceRoot}",
+    "preLaunchTask": "tsc: build - tsconfig.json",
+    "outFiles": [
+      "${workspaceFolder}/build/**/*.js"
+    ],
+    "runtimeExecutable": null,
+    "runtimeArgs": [
+      "--nolazy"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "console": "internalConsole",
+    "sourceMaps": true
+  }]
+}
