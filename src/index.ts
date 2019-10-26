@@ -1,6 +1,6 @@
 process.stdin.setEncoding('utf8');
 
-let radarImage: string  = '';
+let radarImage: string = '';
 
 process.stdin.on('readable', () => {
   let chunk;

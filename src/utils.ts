@@ -1,4 +1,4 @@
-export const formatInput = (input:string) => {
+export const formatInput = (input: string) => {
   const lines = input.trim().split('\n');
   const nodes = lines.length;
   const depth = lines[0].length;
