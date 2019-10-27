@@ -3,6 +3,7 @@ import { createMatrix, formatInput } from '../src/utils';
 
 describe('Format our input', () => {
   const input = radarImage;
+  const weirdInput = 'abcde';
   const expected = {
     depth: 100,
     matrix: radarImageMatrix,
@@ -21,6 +22,10 @@ describe('Format our input', () => {
   test('It should tell us the depth of the nodes this matrix has', () => {
     expect(formatted.depth).toEqual(expected.depth);
   });
+
+  test('It should throw an error with weird input', () => {
+    expect(() => formatInput(weirdInput)).toThrow();
+  })
 });
 
 describe('Create matrix', () => {

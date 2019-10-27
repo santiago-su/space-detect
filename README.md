@@ -47,7 +47,7 @@ npm install
 1. Build project with `npm run build`.
 2. Run project with `npm start`.
 3. Put your input on terminal.
-4. End the session with `CTRL+D`(on OS X),
+4. Type `end` and hit enter key to emit an end event and process input.
 5. See your output on terminal.
 
 #### Tests

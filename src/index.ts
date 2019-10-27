@@ -10,6 +10,9 @@ let radarImage: string = '';
 process.stdin.on('readable', () => {
   let chunk;
   while ((chunk = process.stdin.read()) !== null) {
+    if (chunk === 'end\n') {
+      process.stdin.emit('end');
+    }
     radarImage += chunk;
   }
 });
