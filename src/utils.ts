@@ -10,6 +10,16 @@ export interface Invader {
   matrix: string[][];
 }
 
+/**
+ * Formatting input from STDIN
+ * @param input - String that has:
+ * Our radar image
+ * @returns Object that has:
+ * - nodes: Number of nodes in our image
+ * - depth: Depth of nodes in our image
+ * - matrix: Matrix containing our image
+ */
+
 export const formatInput = (input: string) => {
   const lines = input.trim().split('\n');
   const nodes = lines.length;
@@ -17,6 +27,14 @@ export const formatInput = (input: string) => {
   const matrix = lines.map(line => line.split(''));
   return { nodes, depth, matrix };
 };
+
+/**
+ * Creating matrix
+ * @param input - String that has:
+ * Our radar image information
+ * @returns Array of arrays that contains:
+ * - string: Defining our space either '-' or 'o'
+ */
 
 export const createMatrix = (input: string) =>
   input
