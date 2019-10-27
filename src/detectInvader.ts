@@ -64,7 +64,12 @@ export const detectInvader = (
       for (let i = 0; i < invader.matrix.length; i++) {
         const matrixComparison: string[] = [];
         // Reset depth
-        position[1] = currDepth - 2;
+        if (invader.firstInvader) {
+          position[1] = currDepth - 2;
+        }
+        if (invader.secondInvader) {
+          position[1] = currDepth - 3;
+        }
 
         for (let j = 0; j < invader.matrix[i].length; j++) {
           // Check that we are inside boundaries

@@ -1,9 +1,10 @@
-import { firstInvaderMatrix } from '../fixtures/invaders';
+import { firstInvaderMatrix, secondInvaderMatrix } from '../fixtures/invaders';
 import {
   radarImageMatrix,
   radarImageWithSecondInvaderMatrix,
   radarWithFirstInvaderMatrix,
-  simpleRadarMatrix
+  simpleRadarMatrix,
+  simpleRadarSecondInvaderMatrix
 } from '../fixtures/radarImages';
 import { detectInvader } from '../src/detectInvader';
 import { Radar } from './../src/utils';
@@ -31,6 +32,12 @@ describe('It should detect the first invader', () => {
     nodes: 50
   };
 
+  const inputWithSecondInvaderSimple: Radar = {
+    depth: 11,
+    matrix: simpleRadarSecondInvaderMatrix,
+    nodes: 8
+  }
+
   test('It should detect that there are no invaders', async () => {
     const result = await detectInvader(inputWithNoInvaders, {
       firstInvader: true,
@@ -39,7 +46,7 @@ describe('It should detect the first invader', () => {
     expect(result).toEqual(0);
   });
 
-  test('It should detect that there is one invader', async () => {
+  test('It should detect that there is one invader of the first type', async () => {
     const resultTwo = await detectInvader(inputWithFirstInvader, {
       firstInvader: true,
       matrix: firstInvaderMatrix
@@ -47,7 +54,7 @@ describe('It should detect the first invader', () => {
     expect(resultTwo).toEqual(1);
   });
 
-  test('It should detect that there are two invaders', async () => {
+  test('It should detect that there are two invaders of the first type', async () => {
     const resultThree = await detectInvader(inputWithTwoInvaders, {
       firstInvader: true,
       matrix: firstInvaderMatrix
@@ -56,10 +63,10 @@ describe('It should detect the first invader', () => {
   });
 
   test('It should detect that there are two invaders of the second type', async () => {
-    const resultThree = await detectInvader(inputWithTwoInvaders, {
+    const resultThree = await detectInvader(inputWithSecondInvaderSimple, {
       secondInvader: true,
-      matrix: firstInvaderMatrix
+      matrix: secondInvaderMatrix
     });
-    expect(resultThree).toEqual(2);
+    expect(resultThree).toEqual(1);
   });
 });
