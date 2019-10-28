@@ -5,33 +5,41 @@ export interface Radar {
 }
 
 export interface Invader {
-  firstInvader?: Boolean;
-  secondInvader?: Boolean;
+  firstInvader?: boolean;
+  secondInvader?: boolean;
   matrix: string[][];
+}
+
+export enum AllowedInput {
+  SPACE = '-',
+  RADAR_OBJECT_TEXTURE = 'o'
 }
 
 /**
  * Formatting input from STDIN
  * @param input - String that has:
  * Our radar image
- * @returns Object that has:
+ * @returns Radar object that has:
  * - nodes: Number of nodes in our image
  * - depth: Depth of nodes in our image
  * - matrix: Matrix containing our image
  */
 
-export const formatInput = (input: string) => {
-  const allowedInput = ['-', 'o'];
+export const formatInput = (input: string): Radar => {
   const lines = input.trim().split('\n');
   const nodes = lines.length;
   const depth = lines[0].length;
-  const matrix = lines.map(line => line.split('').map(val => {
-    if(!allowedInput.includes(val)) {
-      throw new Error('What is this space?, our program only accepts "-" or "o"');
-    } else {
-      return val
-    }
-  }));
+  const matrix = lines.map(line =>
+    line.split('').map(val => {
+      if ((Object as any).values(AllowedInput).includes(val)) {
+        return val;
+      } else {
+        throw new Error(
+          'What is this space?, our program only accepts "-" or "o"'
+        );
+      }
+    })
+  );
   return { nodes, depth, matrix };
 };
 
@@ -43,7 +51,7 @@ export const formatInput = (input: string) => {
  * - string: Defining our space either '-' or 'o'
  */
 
-export const createMatrix = (input: string) =>
+export const createMatrix = (input: string): string[][] =>
   input
     .trim()
     .split('\n')

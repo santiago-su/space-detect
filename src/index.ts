@@ -1,7 +1,10 @@
 import { sum } from 'ramda';
-import { firstInvaderMatrix, secondInvaderMatrix } from './../fixtures/invaders';
-import { formatInput } from './utils';
+import {
+  firstInvaderMatrix,
+  secondInvaderMatrix
+} from './../fixtures/invaders';
 import { detectInvader } from './detectInvader';
+import { formatInput } from './utils';
 
 process.stdin.setEncoding('utf8');
 
@@ -19,13 +22,11 @@ process.stdin.on('readable', () => {
 
 process.stdin.on('end', () => {
   const input = formatInput(radarImage);
-  Promise.all(
-    [
-      detectInvader(input, { firstInvader: true, matrix: firstInvaderMatrix }),
-      detectInvader(input, { secondInvader: true, matrix: secondInvaderMatrix }),
-    ]
-  ).then(scores => {
-    const res = sum(scores)
-    process.stdout.write(`There are ${res} space invaders! Watch out!`)
+  Promise.all([
+    detectInvader(input, { firstInvader: true, matrix: firstInvaderMatrix }),
+    detectInvader(input, { secondInvader: true, matrix: secondInvaderMatrix })
+  ]).then(scores => {
+    const res = sum(scores);
+    process.stdout.write(`There are ${res} space invaders! Watch out!`);
   });
 });

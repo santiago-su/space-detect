@@ -25,7 +25,7 @@ describe('Format our input', () => {
 
   test('It should throw an error with weird input', () => {
     expect(() => formatInput(weirdInput)).toThrow();
-  })
+  });
 });
 
 describe('Create matrix', () => {

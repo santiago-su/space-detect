@@ -1,7 +1,5 @@
 import { equals } from 'ramda';
-import { Invader, Radar } from './utils';
-
-const OBJECT = 'o';
+import { AllowedInput, Invader, Radar } from './utils';
 
 /**
  * detectInvader function implementing a Breadth First Search algorithm.
@@ -23,11 +21,11 @@ export const detectInvader = (
     }> = [];
 
     /**
-     * Creates a queue of solid objects
+     * Creates a queue of solid "object" textures
      */
     matrix.map((node: string[], nodeIdx: number) =>
-      node.forEach((depth: string, depthIdx: number) => {
-        if (depth === OBJECT) {
+      node.forEach((val: string, depthIdx: number) => {
+        if (val === AllowedInput.RADAR_OBJECT_TEXTURE) {
           queue.push({ location: [nodeIdx, depthIdx] });
         }
       })
